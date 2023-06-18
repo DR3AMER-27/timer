@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Countdown Timer</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .header {
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .timer {
+      font-size: 48px;
+      font-weight: bold;
+      color: #333;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      padding: 10px 20px;
+      border-radius: 4px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">PENGUMUMAN SNBT</div>
+    <div class="timer" id="countdown"></div>
+  </div>
+
+  <script>
+    // Set the countdown date and time
+    const countdownDate = new Date("June 20, 2023 15:00:00").getTime();
+
+    // Update the countdown every second
+    const countdownTimer = setInterval(function() {
+      const now = new Date().getTime();
+      const timeRemaining = countdownDate - now;
+
+      // Calculate days, hours, minutes, and seconds remaining
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+      // Display the countdown in the "countdown" element
+      document.getElementById("countdown").innerHTML =
+        days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+      // Stop the countdown when the timer reaches zero
+      if (timeRemaining < 0) {
+        clearInterval(countdownTimer);
+        document.getElementById("countdown").innerHTML = "Timer expired!";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
